@@ -2,17 +2,59 @@ package model;
 
 public abstract class Vehiculo {
     protected int capacidad;
+    protected int pasajeros;
     protected float tarifa;
     protected String placa;
     protected String ruta;
     protected String estado;
 
-    public Vehiculo(int capacidad, float tarifa, String placa, String ruta, String estado) {
+    public Vehiculo(int capacidad, int pasajeros, float tarifa, String placa, String ruta, String estado) {
         this.capacidad = capacidad;
+        this.pasajeros = pasajeros;
         this.tarifa = tarifa;
         this.placa = placa;
         this.ruta = ruta;
         this.estado = estado;
+    }
+
+    public boolean estaDisponible() {
+        return this.estado.equalsIgnoreCase("disponible");
+    }
+
+    public void cambiarEstado(String nuevoEstado) {
+        this.estado = nuevoEstado;
+    }
+
+    public int getCuposDisponibles() {
+        return this.capacidad - this.pasajeros;
+    }
+
+    public boolean tieneCupos() {
+        return getCuposDisponibles() > 0;
+    }
+
+    public boolean abordarPasajero() {
+        if (tieneCupos()) {
+            this.pasajeros++;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean bajarPasajero() {
+        if (this.pasajeros > 0) {
+            this.pasajeros--;
+            return true;
+        }
+        return false;
+    }
+
+    public double calcularTarifaConDescuento(double descuento) {
+        return this.tarifa - (this.tarifa * descuento);
+    }
+
+    public double calcularTarifaConRecargo(double porcentaje) {
+        return this.tarifa + (this.tarifa * porcentaje);
     }
 
     public int getCapacidad() {
@@ -22,6 +64,10 @@ public abstract class Vehiculo {
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
+
+    public int getPasajeros() { return pasajeros; }
+
+    public void setPasajeros(int pasajeros) { this.pasajeros = pasajeros; }
 
     public float getTarifa() {
         return tarifa;
@@ -57,7 +103,7 @@ public abstract class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "capacidad=" + capacidad + ", tarifa=" + tarifa + ", placa=" + placa + ", ruta=" + ruta + ", estado=" + estado + '}';
+        return "Vehiculo{" + "capacidad=" + capacidad + "pasajeros=" + pasajeros + "tarifa=" + tarifa + ", placa=" + placa + ", ruta=" + ruta + ", estado=" + estado + '}';
     }
     
     
