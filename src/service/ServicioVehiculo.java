@@ -6,6 +6,7 @@ import model.Bus;
 import model.MicroBus;
 import model.Vehiculo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServicioVehiculo {
@@ -77,7 +78,54 @@ public class ServicioVehiculo {
         System.out.println("Estado actualizado a: " + nuevoEstado);
     }
 
-    
+    //Metodos encargados de hacer las consultas y el listado de los vehiculos
+
+    public List<Vehiculo> listarTodos() {
+        List<Vehiculo> lista = vehiculoDAO.cargarTodos();
+        if (lista.isEmpty()) {
+            System.out.println("No hay vehículos registrados.");
+        } else {
+            for (Vehiculo v : lista) {
+                v.imprimirDetalle();
+            }
+        }
+        return lista;
+    }
+
+    public List<Vehiculo> listarDisponibles() {
+        List<Vehiculo> disponibles = new ArrayList<>();
+        for (Vehiculo v : vehiculoDAO.cargarTodos()) {
+            if (v.estaDisponible() && v.tieneCupos()) {
+                disponibles.add(v);
+            }
+        }
+
+        if (disponibles.isEmpty()) {
+            System.out.println("No hay vehículos disponibles con cupos.");
+        } else {
+            System.out.println("=== Vehículos disponibles ===");
+            for (Vehiculo v : disponibles) {
+                v.imprimirDetalle();
+            }
+        }
+        return disponibles;
+    }
+
+    public Vehiculo buscarPorPlaca(String placa) {
+        Vehiculo encontrado = vehiculoDAO.buscarPorPlaca(placa);
+        if (encontrado == null) {
+            System.out.println("No se encontró vehículo con placa: " + placa);
+        }
+        return encontrado;
+    }
+
+    public void mostrarCuposVehiculo(Vehiculo vehiculo) {
+        System.out.println("Vehículo  : " + vehiculo.getPlaca());
+        System.out.println("Capacidad : " + vehiculo.getCapacidad());
+        System.out.println("Ocupados  : " + vehiculo.getPasajeros());
+        System.out.println("Libres    : " + vehiculo.getCuposDisponibles());
+    }
+
 
 
 }
