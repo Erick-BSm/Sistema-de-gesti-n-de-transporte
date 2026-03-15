@@ -5,16 +5,37 @@ import model.Buseta;
 import model.Bus;
 import model.MicroBus;
 import model.Vehiculo;
-import model.Conductor;
 
 import java.util.List;
 
-public class VehiculoService {
+public class ServicioVehiculo {
 
     private VehiculoDAO vehiculoDAO;
 
-    public VehiculoService() {
+    public ServicioVehiculo() {
         this.vehiculoDAO = new VehiculoDAO();
+    }
+
+    public boolean registrarVehiculo(Vehiculo vehiculo) {
+        if (!validarPlacaUnica(vehiculo.getPlaca())) {
+            System.out.println("Ya existe un vehiculo con la placa: " + vehiculo.getPlaca()+ ". Intentelo de nuevo");
+            return false;
+        }
+        vehiculoDAO.guardar(vehiculo);
+        System.out.println("Vehículo registrado correctamente.");
+        return true;
+    }
+
+    //Validaciones que son necesarias para que funcionen los metodos CRUD
+
+    public boolean validarPlacaUnica(String placa) {
+        List<Vehiculo> lista = vehiculoDAO.cargarTodos();
+        for (Vehiculo v : lista) {
+            if (v.getPlaca().equalsIgnoreCase(placa)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
