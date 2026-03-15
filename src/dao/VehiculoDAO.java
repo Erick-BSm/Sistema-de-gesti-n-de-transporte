@@ -167,5 +167,28 @@ public class VehiculoDAO {
     }
 
     //Metodos encargado de verificar la existencia de la placa
+    public boolean existePlaca(String placa) {
+        return buscarPorPlaca(placa) != null;
+    }
+
+    //Metodo para inicialziar los archivos en caso de que no existan
+
+    public void inicializarArchivos() {
+        crearArchivoSiNoExiste(ARCHIVO_BUSETA);
+        crearArchivoSiNoExiste(ARCHIVO_MICROBUS);
+        crearArchivoSiNoExiste(ARCHIVO_BUS);
+    }
+
+    private void crearArchivoSiNoExiste(String nombreArchivo) {
+        File f = new File(nombreArchivo);
+        if (!f.exists()) {
+            try {
+                f.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Error al crear archivo " + nombreArchivo + ": " + e.getMessage());
+            }
+        }
+    }
+
 
 }
