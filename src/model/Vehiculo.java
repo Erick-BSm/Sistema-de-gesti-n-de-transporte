@@ -49,6 +49,12 @@ public abstract class Vehiculo {
         return false;
     }
 
+    //Este metodo es necesario para que en la persistencia se pasen estos datos a archivo de texto
+
+    public String toArchivoTexto() {
+        return placa + ";" + ruta + ";" + estado + ";" + pasajeros;
+    }
+
     public double calcularTarifaConDescuento(double descuento) {
         return this.tarifa - (this.tarifa * descuento);
     }
