@@ -125,7 +125,28 @@ public class ServicioVehiculo {
         System.out.println("Ocupados  : " + vehiculo.getPasajeros());
         System.out.println("Libres    : " + vehiculo.getCuposDisponibles());
     }
+    //Ultimo pedazo de codigo encargado de mostrar los datos generales
+    public void mostrarResumenDatos() {
+        List<Vehiculo> lista = vehiculoDAO.cargarTodos();
+        int totalBuseta = 0, totalMicroBus = 0, totalBus = 0;
+        int disponibles = 0;
 
+        for (Vehiculo v : lista) {
+            if (v instanceof Buseta)   totalBuseta++;
+            if (v instanceof MicroBus) totalMicroBus++;
+            if (v instanceof Bus)      totalBus++;
+            if (v.estaDisponible())    disponibles++;
+        }
 
+        System.out.println("╔══════════════════════════════╗");
+        System.out.println("║       RESUMEN DE DATOS       ║");
+        System.out.println("╠══════════════════════════════╣");
+        System.out.println("║ Total vehículos  : " + lista.size());
+        System.out.println("║ Busetas          : " + totalBuseta);
+        System.out.println("║ MicroBuses       : " + totalMicroBus);
+        System.out.println("║ Buses            : " + totalBus);
+        System.out.println("║ Disponibles      : " + disponibles);
+        System.out.println("╚══════════════════════════════╝");
+    }
 
 }
