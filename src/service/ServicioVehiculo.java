@@ -55,5 +55,29 @@ public class ServicioVehiculo {
         return true;
     }
 
+    //Metodos encargados del cambio de estados de los vehiculos
+    public void cambiarEstadoVehiculo(Vehiculo vehiculo, String nuevoEstado) {
+        //Sencillamente revisa que lo que ingrese el usuario sea igual a esto y los procesa
+        String[] estadosValidos = {"disponible", "no disponible", "mantenimiento"};
+        boolean valido = false;
+
+        for (String e : estadosValidos) {
+            if (e.equalsIgnoreCase(nuevoEstado)) {
+                valido = true;
+                break;
+            }
+        }
+
+        if (!valido) {
+            System.out.println("Estado no válido. Use: disponible / no disponible / mantenimiento");
+            return;
+        }
+
+        vehiculo.cambiarEstado(nuevoEstado);
+        System.out.println("Estado actualizado a: " + nuevoEstado);
+    }
+
+    
+
 
 }
