@@ -24,4 +24,18 @@ public class Buseta extends Vehiculo {
     @Override
     public String getTipoVehiculo() { return "Buseta"; }
 
+    @Override
+    public void imprimirDetalle() {
+        System.out.println("╔══════════════════════════╗");
+        System.out.println("║         BUSETA           ║");
+        System.out.println("╠══════════════════════════╣");
+        System.out.println("║ Placa       : " + placa);
+        System.out.println("║ Ruta        : " + ruta);
+        System.out.println("║ Capacidad   : " + capacidad);
+        System.out.println("║ Disponibles : " + getCuposDisponibles());
+        System.out.println("║ Tarifa base : $" + tarifa);
+        System.out.println("║ Estado      : " + estado);
+        System.out.println("╚══════════════════════════╝");
+    }
+
 }

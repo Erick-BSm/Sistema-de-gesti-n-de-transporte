@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Vehiculo {
+public abstract class Vehiculo implements Imprimible{
     protected int capacidad;
     protected int pasajeros;
     protected float tarifa;
