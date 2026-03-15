@@ -111,6 +111,8 @@ public abstract class Vehiculo {
     public String toString() {
         return "Vehiculo{" + "capacidad=" + capacidad + "pasajeros=" + pasajeros + "tarifa=" + tarifa + ", placa=" + placa + ", ruta=" + ruta + ", estado=" + estado + '}';
     }
-    
+
+    //Metodo que ayuda en la persistencia para detectar el tipo de vehiculo que es
+    public abstract String getTipoVehiculo();
     
 }

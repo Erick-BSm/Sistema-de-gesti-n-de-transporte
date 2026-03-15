@@ -3,8 +3,8 @@ package model;
 
 
 public class Buseta extends Vehiculo {
-    public Buseta(int capacidad, int pasajeros, float tarifa, String placa, String ruta, String estado) {
-        super(capacidad, pasajeros, tarifa, placa, ruta, estado);
+    public Buseta(String placa, String ruta, String estado) {
+        super(19, 0,8000, placa, ruta, estado);
     }
 
     @Override
@@ -12,4 +12,16 @@ public class Buseta extends Vehiculo {
         double recargo = Math.min(porcentaje, 0.10); // máximo 10%
         return this.tarifa + (this.tarifa * recargo);
     }
+
+    public static Buseta fromArchivoTexto(String linea) {
+        //El formato en el que se van a pasar a texto es: Placa;Ruta;Estado;Pasajeros
+        String[] datos = linea.split(";");
+        Buseta b = new Buseta(datos[0], datos[1], datos[2]);
+        b.setPasajeros(Integer.parseInt(datos[3]));
+        return b;
+    }
+
+    @Override
+    public String getTipoVehiculo() { return "Buseta"; }
+
 }

@@ -30,11 +30,30 @@ public class VehiculoDAO {
     //Metodos para que los archivos se puedan cargar y leer
 
     public List<Vehiculo> cargarTodos() {
-
+        List<Vehiculo> lista = new ArrayList<>();
+        lista.addAll(cargarArchivo(ARCHIVO_BUSETA,   "Buseta"));
+        lista.addAll(cargarArchivo(ARCHIVO_MICROBUS, "MicroBus"));
+        lista.addAll(cargarArchivo(ARCHIVO_BUS,      "Bus"));
+        return lista;
     }
 
     private List<Vehiculo> cargarArchivo(String archivo, String tipo) {
-
+        List<Vehiculo> lista = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (!linea.isBlank()) {
+                    switch (tipo) {
+                        case "Buseta"   -> lista.add(Buseta.fromArchivoTexto(linea));
+                        case "MicroBus" -> lista.add(MicroBus.fromArchivoTexto(linea));
+                        case "Bus"      -> lista.add(Bus.fromArchivoTexto(linea));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            // Si el archivo no existe aún, se ignora
+        }
+        return lista;
     }
 
     private String obtenerArchivo(Vehiculo vehiculo) {
