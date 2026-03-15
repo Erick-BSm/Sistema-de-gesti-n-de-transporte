@@ -77,4 +77,32 @@ public class VehiculoDAO {
         return "vehiculos.txt";
     }
 
+    //Metodo actualizar del CRUD (Update)
+    public void actualizar(Vehiculo vehiculoActualizado) {
+        List<Vehiculo> lista = cargarTodos();
+        String archivo = obtenerArchivo(vehiculoActualizado);
+
+        // Filtra solo los vehículos del mismo tipo
+        List<Vehiculo> mismoTipo = new ArrayList<>();
+        for (Vehiculo v : lista) {
+            if (v.getClass().equals(vehiculoActualizado.getClass())) {
+                mismoTipo.add(v);
+            }
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, false))) {
+            for (Vehiculo v : mismoTipo) {
+                if (v.getPlaca().equalsIgnoreCase(vehiculoActualizado.getPlaca())) {
+                    bw.write(vehiculoActualizado.toArchivoTexto()); // escribe el actualizado
+                } else {
+                    bw.write(v.toArchivoTexto());
+                }
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al actualizar vehículo: " + e.getMessage());
+        }
+    }
+
+    
 }
