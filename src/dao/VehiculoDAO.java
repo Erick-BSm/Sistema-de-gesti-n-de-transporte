@@ -144,5 +144,28 @@ public class VehiculoDAO {
         }
     }
 
+    //Metodos encargados de listar la información
+
+    public List<Vehiculo> listarPorTipo(String tipo) {
+        List<Vehiculo> resultado = new ArrayList<>();
+        for (Vehiculo v : cargarTodos()) {
+            if (v.getTipoVehiculo().equalsIgnoreCase(tipo)) {
+                resultado.add(v);
+            }
+        }
+        return resultado;
+    }
+
+    public List<Vehiculo> listarDisponibles() {
+        List<Vehiculo> resultado = new ArrayList<>();
+        for (Vehiculo v : cargarTodos()) {
+            if (v.estaDisponible() && v.tieneCupos()) {
+                resultado.add(v);
+            }
+        }
+        return resultado;
+    }
+
+    //Metodos encargado de verificar la existencia de la placa
 
 }
