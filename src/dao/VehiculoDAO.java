@@ -39,8 +39,10 @@ public class VehiculoDAO {
 
     private List<Vehiculo> cargarArchivo(String archivo, String tipo) {
         List<Vehiculo> lista = new ArrayList<>();
+        //El buffered reader es un paquete que incluye java y se encarga de leer el archivo linea por linea
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
+            //Ese linea = br.readLine lee una linea y la almacena temporalmente en "linea", entonces esto es un ciclo que sigue hasta que se terminen de leer todas las lineas
             while ((linea = br.readLine()) != null) {
                 if (!linea.isBlank()) {
                     switch (tipo) {
@@ -56,8 +58,23 @@ public class VehiculoDAO {
         return lista;
     }
 
-    private String obtenerArchivo(Vehiculo vehiculo) {
+    //Este es un metodo para buscar el vehiculo por placa, mas adelante se utilizara
+    public Vehiculo buscarPorPlaca(String placa) {
+        for (Vehiculo v : cargarTodos()) {
+            if (v.getPlaca().equalsIgnoreCase(placa)) {
+                return v;
+            }
+        }
+        return null;
+    }
 
+
+    private String obtenerArchivo(Vehiculo vehiculo) {
+        //Estos If se encargan de retornar el archivo respectivo de cada vehiculo en base a la instancia que se pida
+        if (vehiculo instanceof Buseta)   return ARCHIVO_BUSETA;
+        if (vehiculo instanceof MicroBus) return ARCHIVO_MICROBUS;
+        if (vehiculo instanceof Bus)      return ARCHIVO_BUS;
+        return "vehiculos.txt";
     }
 
 }

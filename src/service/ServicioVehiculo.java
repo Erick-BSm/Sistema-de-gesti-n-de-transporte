@@ -38,5 +38,22 @@ public class ServicioVehiculo {
         return true;
     }
 
+    public boolean validarDisponibilidad(Vehiculo vehiculo) {
+        if (!vehiculo.estaDisponible()) {
+            System.out.println("❌ El vehículo " + vehiculo.getPlaca() + " no está disponible.");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validarCupos(Vehiculo vehiculo) {
+        if (!vehiculo.tieneCupos()) {
+            System.out.println("❌ El vehículo " + vehiculo.getPlaca() + " no tiene cupos disponibles.");
+            System.out.println("   Cupos disponibles: " + vehiculo.getCuposDisponibles());
+            return false;
+        }
+        return true;
+    }
+
 
 }
