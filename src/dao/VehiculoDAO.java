@@ -104,5 +104,45 @@ public class VehiculoDAO {
         }
     }
 
-    
+    //Metodo eliminar del CRUD (Delete)
+    public boolean eliminar(String placa) {
+        List<Vehiculo> lista = cargarTodos();
+        Vehiculo aEliminar = null;
+
+        for (Vehiculo v : lista) {
+            if (v.getPlaca().equalsIgnoreCase(placa)) {
+                aEliminar = v;
+                break;
+            }
+        }
+
+        if (aEliminar == null) {
+            System.out.println("No se encontró vehículo con placa: " + placa);
+            return false;
+        }
+
+        String archivo = obtenerArchivo(aEliminar);
+        List<Vehiculo> mismoTipo = new ArrayList<>();
+        for (Vehiculo v : lista) {
+            if (v.getClass().equals(aEliminar.getClass())) {
+                mismoTipo.add(v);
+            }
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, false))) {
+            for (Vehiculo v : mismoTipo) {
+                if (!v.getPlaca().equalsIgnoreCase(placa)) {
+                    bw.write(v.toArchivoTexto());
+                    bw.newLine();
+                }
+            }
+            System.out.println("Vehículo eliminado correctamente.");
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error al eliminar vehículo: " + e.getMessage());
+            return false;
+        }
+    }
+
+
 }
