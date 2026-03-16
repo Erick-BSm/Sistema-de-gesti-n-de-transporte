@@ -12,22 +12,12 @@ public class PasajeroService {
 
     public void registrarPasajero(String cedula, String nombre, String tipo) {
 
-        Pasajero pasajero = null;
-
-        switch (tipo.toLowerCase()) {
-
-            case "regular":
-                pasajero = new PasajeroRegular(cedula, nombre);
-                break;
-
-            case "estudiante":
-                pasajero = new PasajeroEstudiante(cedula, nombre);
-                break;
-
-            case "adulto":
-                pasajero = new PasajeroAdultoMayor(cedula, nombre);
-                break;
-        }
+        Pasajero pasajero = switch (tipo.toLowerCase()) {
+            case "regular" -> new PasajeroRegular(cedula, nombre);
+            case "estudiante" -> new PasajeroEstudiante(cedula, nombre);
+            case "adulto" -> new PasajeroAdultoMayor(cedula, nombre);
+            default -> null;
+        };
 
         if (pasajero != null) {
             dao.guardar(pasajero);
