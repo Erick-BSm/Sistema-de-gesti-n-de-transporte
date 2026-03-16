@@ -1,7 +1,5 @@
 package model;
 
-import interfaces.Calculable;
-
 public class Ticket implements Calculable {
 
     private Pasajero pasajero;
