@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3a12d5ba-a556-4a36-a1c2-2683706c74d7" name="Changes" comment="feature: menu principal de usuario" />
+    <list default="true" id="3a12d5ba-a556-4a36-a1c2-2683706c74d7" name="Changes" comment="feature: menu principal de usuario">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,6 +59,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/USER/Documents/SistemaGestionTransporte/src/Main.java",
@@ -84,6 +87,7 @@
       <workItem from="1772763692022" duration="2046000" />
       <workItem from="1773546160494" duration="4659000" />
       <workItem from="1773619626692" duration="1098000" />
+      <workItem from="1773620745801" duration="671000" />
     </task>
     <task id="LOCAL-00001" summary="feature:metodo iniciar">
       <option name="closed" value="true" />
