@@ -6,7 +6,6 @@ import dao.TicketDAO;
 import model.Pasajero;
 import model.Reserva;
 import model.Vehiculo;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,8 @@ public class GestorReservas {
     private List<Reserva>    reservas;
     private ReservaDAO       reservaDAO;
     private PasajeroDAO      pasajeroDAO;
-    private ServicioVehiculo servicioVehiculo;
     private TicketDAO        ticketDAO;
+    private ServicioVehiculo servicioVehiculo;
     private TicketService    ticketService;
 
     // ─────────────────────────────────────────
@@ -39,20 +38,11 @@ public class GestorReservas {
     //  PERSISTENCIA
     // ═════════════════════════════════════════
 
-    /**
-     * Carga todas las reservas desde reservas.txt al iniciar el sistema.
-     * Después de cargar, verifica automáticamente las reservas vencidas.
-     *
-     * @return número de reservas vencidas canceladas automáticamente.
-     */
     public int cargarDesdeArchivo() {
         reservas = reservaDAO.cargarTodos();
         return verificarReservasVencidas();
     }
 
-    /**
-     * Persiste la lista completa en reservas.txt.
-     */
     private void guardar() {
         reservaDAO.guardarTodos(reservas);
     }
@@ -64,35 +54,26 @@ public class GestorReservas {
     /**
      * Crea una nueva reserva validando todas las reglas de negocio.
      *
-     * Reglas:
-     *  1. El pasajero existe.
-     *  2. El vehículo existe y está disponible.
-     *  3. El pasajero no tiene ya una reserva activa para ese vehículo y fecha.
-     *  4. El vehículo tiene cupo disponible (cuposDisponibles - reservas activas > 0).
-     *
-     * @return la Reserva creada, o null si no se pudo crear.
+     * Regla 1: capacidad del vehículo - tickets vendidos - reservas activas > 0.
+     * Regla 3: el pasajero no puede tener más de una reserva activa para el mismo
+     *          vehículo en la misma fecha de viaje.
      */
     public Reserva crearReserva(String codigo, String cedulaPasajero,
                                 String placaVehiculo, LocalDate fechaViaje) {
 
-        // 1. Buscar pasajero
         Pasajero pasajero = pasajeroDAO.buscarPorCedula(cedulaPasajero);
         if (pasajero == null) {
             System.out.println("Error: no existe un pasajero con cédula " + cedulaPasajero);
             return null;
         }
 
-        // 2. Buscar vehículo y validar disponibilidad
         Vehiculo vehiculo = servicioVehiculo.buscarPorPlaca(placaVehiculo);
-        if (vehiculo == null) {
-            return null; // ServicioVehiculo ya imprime el mensaje
-        }
+        if (vehiculo == null) return null;
 
-        if (!servicioVehiculo.validarDisponibilidad(vehiculo)) {
-            return null;
-        }
+        if (!servicioVehiculo.validarDisponibilidad(vehiculo)) return null;
 
-        // 3. Pasajero no puede tener más de una reserva activa para el mismo vehículo y fecha
+        // Regla 3 — un pasajero no puede tener más de una reserva activa
+        //           para el mismo vehículo en la misma fecha
         for (Reserva r : reservas) {
             if (r.getEstado() == Reserva.EstadoReserva.ACTIVA
                     && r.getPasajero().getCedula().equals(cedulaPasajero)
@@ -103,13 +84,12 @@ public class GestorReservas {
             }
         }
 
-        // 4. Verificar cupo real: cuposDisponibles del vehículo - reservas activas en esa fecha
+        // Regla 1 — capacidad máxima contando tickets vendidos + reservas activas
         if (!hayCupoDisponible(vehiculo, fechaViaje)) {
             System.out.println("Error: el vehículo no tiene cupos disponibles para esa fecha.");
             return null;
         }
 
-        // 5. Crear y persistir
         Reserva nueva = new Reserva(codigo, pasajero, vehiculo, fechaViaje);
         reservas.add(nueva);
         guardar();
@@ -120,8 +100,6 @@ public class GestorReservas {
 
     /**
      * Cancela una reserva existente por su código.
-     *
-     * @return true si se canceló correctamente.
      */
     public boolean cancelarReserva(String codigo) {
         Reserva reserva = buscarPorCodigo(codigo);
@@ -143,10 +121,8 @@ public class GestorReservas {
     }
 
     /**
-     * Convierte una reserva en ticket aplicando todas las reglas de venta normales
-     * (descuento por tipo de pasajero, tarifa del vehículo).
-     *
-     * @return true si la conversión fue exitosa.
+     * Convierte una reserva en ticket aplicando:
+     * Regla 4 — descuento por tipo de pasajero + recargo del 10% si la fecha es festivo.
      */
     public boolean convertirReservaEnTicket(String codigoReserva,
                                             String origen, String destino) {
@@ -162,17 +138,18 @@ public class GestorReservas {
             return false;
         }
 
-        Vehiculo vehiculo = reserva.getVehiculo();
-        Pasajero pasajero = reserva.getPasajero();
+        Vehiculo  vehiculo = reserva.getVehiculo();
+        Pasajero  pasajero = reserva.getPasajero();
+        LocalDate fecha    = reserva.getFechaViaje();
 
-        // Aplicar descuento por tipo de pasajero sobre la tarifa del vehículo
-        double descuento  = pasajero.calcularDescuento();
+        // Regla 4 — descuento por tipo de pasajero
+        double descuento   = pasajero.calcularDescuento();
         double tarifaFinal = vehiculo.calcularTarifaConDescuento(descuento);
 
-        // Delegar al TicketService con las reglas normales de venta
-        ticketService.venderTicket(pasajero, vehiculo.getPlaca(), origen, destino, tarifaFinal);
+        // Regla 4 — recargo festivo (lo aplica Ticket.calcularTotal() internamente)
+        ticketService.venderTicketConFecha(pasajero, vehiculo.getPlaca(),
+                origen, destino, tarifaFinal, fecha);
 
-        // Marcar la reserva como convertida y guardar
         reserva.convertirATicket();
         guardar();
 
@@ -181,10 +158,10 @@ public class GestorReservas {
     }
 
     /**
-     * Recorre todas las reservas activas, cancela las vencidas (más de 24 h)
-     * y reporta cuántas fueron canceladas.
+     * Cancela automáticamente todas las reservas activas vencidas (más de 24 h).
+     * Regla 2.
      *
-     * @return cantidad de reservas canceladas por vencimiento.
+     * @return cantidad de reservas canceladas.
      */
     public int verificarReservasVencidas() {
         int canceladas = 0;
@@ -205,45 +182,28 @@ public class GestorReservas {
     }
 
     // ═════════════════════════════════════════
-    //  CONSULTAS / LISTADOS
+    //  CONSULTAS
     // ═════════════════════════════════════════
 
-    /**
-     * Lista todas las reservas con estado ACTIVA.
-     */
     public List<Reserva> listarReservasActivas() {
         List<Reserva> activas = new ArrayList<>();
         for (Reserva r : reservas) {
-            if (r.getEstado() == Reserva.EstadoReserva.ACTIVA) {
-                activas.add(r);
-            }
+            if (r.getEstado() == Reserva.EstadoReserva.ACTIVA) activas.add(r);
         }
         return activas;
     }
 
-    /**
-     * Retorna el historial completo de reservas de un pasajero (todos los estados).
-     */
     public List<Reserva> listarHistorialPasajero(String cedulaPasajero) {
         List<Reserva> historial = new ArrayList<>();
         for (Reserva r : reservas) {
-            if (r.getPasajero().getCedula().equals(cedulaPasajero)) {
-                historial.add(r);
-            }
+            if (r.getPasajero().getCedula().equals(cedulaPasajero)) historial.add(r);
         }
         return historial;
     }
 
-    /**
-     * Busca una reserva por su código único.
-     *
-     * @return la Reserva encontrada, o null si no existe.
-     */
     public Reserva buscarPorCodigo(String codigo) {
         for (Reserva r : reservas) {
-            if (r.getCodigo().equals(codigo)) {
-                return r;
-            }
+            if (r.getCodigo().equals(codigo)) return r;
         }
         return null;
     }
@@ -253,13 +213,14 @@ public class GestorReservas {
     // ═════════════════════════════════════════
 
     /**
-     * Verifica si un vehículo tiene cupo disponible para una fecha dada.
-     *
-     * Cupo real = getCuposDisponibles() (capacidad - pasajeros con ticket)
-     *           - reservas activas para ese vehículo en esa fecha
+     * Regla 1 — verifica cupo real:
+     * capacidad - tickets vendidos (TicketDAO) - reservas activas en esa fecha > 0
      */
     private boolean hayCupoDisponible(Vehiculo vehiculo, LocalDate fechaViaje) {
+        int  capacidad       = vehiculo.getCapacidad();
+        int  ticketsVendidos = ticketDAO.contarPorPlaca(vehiculo.getPlaca());
         long reservasActivas = 0;
+
         for (Reserva r : reservas) {
             if (r.getEstado() == Reserva.EstadoReserva.ACTIVA
                     && r.getVehiculo().getPlaca().equalsIgnoreCase(vehiculo.getPlaca())
@@ -267,6 +228,7 @@ public class GestorReservas {
                 reservasActivas++;
             }
         }
-        return (vehiculo.getCuposDisponibles() - reservasActivas) > 0;
+
+        return (capacidad - ticketsVendidos - reservasActivas) > 0;
     }
 }
