@@ -7,6 +7,7 @@ import service.PasajeroService;
 import service.TicketService;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -30,6 +31,7 @@ public class Menu {
     private ServicioVehiculo servicioVehiculo = new ServicioVehiculo();
     private PasajeroService servicioPasajero = new PasajeroService();
     private TicketService servicioTicket = new TicketService();
+    private GestorReservas gestorReservas = new GestorReservas(servicioVehiculo, servicioTicket);
 
     public Menu() {
         this.scanner = new Scanner(System.in);
@@ -319,11 +321,53 @@ public class Menu {
             scanner.nextLine();
 
             switch (opcion) {
-                case 1: break;
-                case 2:  break;
-                case 3:  break;
-                case 4:  break;
-                case 5:  break;
+                case 1:
+                    System.out.print("Código de reserva: ");
+                    String codigo = scanner.nextLine();
+                    System.out.print("Cédula del pasajero: ");
+                    String cedula = scanner.nextLine();
+                    System.out.print("Placa del vehículo: ");
+                    String placa = scanner.nextLine();
+                    System.out.print("Fecha de viaje (YYYY-MM-DD): ");
+                    LocalDate fecha = LocalDate.parse(scanner.nextLine());
+                    gestorReservas.crearReserva(codigo, cedula, placa, fecha);
+                    break;
+                case 2:
+                    System.out.print("Código de reserva a cancelar: ");
+                    String codigoCancelar = scanner.nextLine();
+                    gestorReservas.cancelarReserva(codigoCancelar);
+                    break;
+                case 3:
+                    List<Reserva> activas = gestorReservas.listarReservasActivas();
+                    if (activas.isEmpty()) {
+                        System.out.println("No hay reservas activas.");
+                    } else {
+                        for (Reserva r : activas) {
+                            System.out.println(r);
+                        }
+                    }
+                    break;
+                case 4:
+                    System.out.print("Cédula del pasajero: ");
+                    String cedulaHistorial = scanner.nextLine();
+                    List<Reserva> historial = gestorReservas.listarHistorialPasajero(cedulaHistorial);
+                    if (historial.isEmpty()) {
+                        System.out.println("No hay reservas para ese pasajero.");
+                    } else {
+                        for (Reserva r : historial) {
+                            System.out.println(r);
+                        }
+                    }
+                    break;
+                case 5:
+                    System.out.print("Código de reserva: ");
+                    String codigoTicket = scanner.nextLine();
+                    System.out.print("Ciudad origen: ");
+                    String origen = scanner.nextLine();
+                    System.out.print("Ciudad destino: ");
+                    String destino = scanner.nextLine();
+                    gestorReservas.convertirReservaEnTicket(codigoTicket, origen, destino);
+                    break;
                 case 0: break;
                 default: System.out.println("️ Opción no válida.");
             }
