@@ -24,4 +24,12 @@ public class PasajeroService {
             dao.guardar(pasajero);
         }
     }
+
+    public Pasajero buscarPorCedula(String cedula) {
+        Pasajero p = dao.buscarPorCedula(cedula);
+        if (p == null) {
+            System.out.println("No se encontró pasajero con cédula: " + cedula);
+        }
+        return p;
+    }
 }

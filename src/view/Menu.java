@@ -5,6 +5,8 @@ import service.ServicioVehiculo;
 import service.GestorReservas;
 import service.PasajeroService;
 import service.TicketService;
+
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -161,8 +163,51 @@ public class Menu {
             scanner.nextLine();
 
             switch (opcion) {
-                case 1: break;
-                case 2:  break;
+                case 1: System.out.print("Cédula del conductor: ");
+                    String cedulaConductor = scanner.nextLine();
+                    Pasajero conductor = servicioPasajero.buscarPorCedula(cedulaConductor);
+                    if (conductor == null) {
+                        System.out.println("Persona no encontrada.");
+                        break;
+                    }
+                    System.out.print("Placa del vehículo: ");
+                    String placaVehiculo = scanner.nextLine();
+                    servicioVehiculo.asignarConductorAVehiculo(placaVehiculo, conductor);
+                    break;
+                case 2:  System.out.print("Cédula: ");
+                    String cedula = scanner.nextLine();
+                    System.out.print("Nombre: ");
+                    String nombre = scanner.nextLine();
+
+                    System.out.println("Tipo de pasajero:");
+                    System.out.println("1. Regular");
+                    System.out.println("2. Estudiante");
+                    System.out.println("3. Adulto Mayor");
+                    System.out.print("Seleccione: ");
+                    int tipoPasajero = scanner.nextInt();
+                    scanner.nextLine();
+
+                    String tipo = switch (tipoPasajero) {
+                        case 1 -> "regular";
+                        case 2 -> "estudiante";
+                        case 3 -> "adulto";
+                        default -> null;
+                    };
+
+                    if (tipo == null) {
+                        System.out.println("Tipo no válido.");
+                        break;
+                    }
+
+                    LocalDate fechaNacimiento = null;
+                    if (tipo.equals("adulto")) {
+                        System.out.print("Fecha de nacimiento (YYYY-MM-DD): ");
+                        fechaNacimiento = LocalDate.parse(scanner.nextLine());
+                    }
+
+                    servicioPasajero.registrarPasajero(cedula, nombre, tipo, fechaNacimiento);
+                    System.out.println("Pasajero registrado correctamente.");
+                    break;
                 case 3:  break;
 
                 default: System.out.println("️ Opción no válida.");
