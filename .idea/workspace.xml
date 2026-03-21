@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a12d5ba-a556-4a36-a1c2-2683706c74d7" name="Changes" comment="feature: Metodos fromArchivoTexto actualizados para las rutas">
+    <list default="true" id="3a12d5ba-a556-4a36-a1c2-2683706c74d7" name="Changes" comment="feature: Metodos en gestion vehiculo conectados">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +125,7 @@
       <workItem from="1773623191919" duration="1553000" />
       <workItem from="1773672661575" duration="1064000" />
       <workItem from="1774020306514" duration="4849000" />
-      <workItem from="1774118297399" duration="1676000" />
+      <workItem from="1774118297399" duration="2921000" />
     </task>
     <task id="LOCAL-00001" summary="feature:metodo iniciar">
       <option name="closed" value="true" />
@@ -166,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774119643458</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feature: Nuevo apartado gestión reservas creado">
+      <option name="closed" value="true" />
+      <created>1774120178269</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1774120178269</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +209,8 @@
     <MESSAGE value="feature:menu.iniciar en main" />
     <MESSAGE value="feature: menu principal de usuario" />
     <MESSAGE value="feature: Metodos fromArchivoTexto actualizados para las rutas" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: Metodos fromArchivoTexto actualizados para las rutas" />
+    <MESSAGE value="feature: Nuevo apartado gestión reservas creado" />
+    <MESSAGE value="feature: Metodos en gestion vehiculo conectados" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: Metodos en gestion vehiculo conectados" />
   </component>
 </project>

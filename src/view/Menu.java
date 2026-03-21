@@ -1,6 +1,8 @@
 package view;
 
+import model.*;
 import service.ServicioVehiculo;
+import service.GestorReservas;
 import service.PasajeroService;
 import service.TicketService;
 import java.util.Scanner;
@@ -22,6 +24,10 @@ import java.util.Scanner;
 public class Menu {
 
     private Scanner scanner;
+
+    private ServicioVehiculo servicioVehiculo = new ServicioVehiculo();
+    private PasajeroService servicioPasajero = new PasajeroService();
+    private TicketService servicioTicket = new TicketService();
 
     public Menu() {
         this.scanner = new Scanner(System.in);
@@ -80,10 +86,59 @@ public class Menu {
             scanner.nextLine();
 
             switch (opcion) {
-                case 1: break;
-                case 2:  break;
-                case 3:  break;
-                case 4:  break;
+                case 1: System.out.println("Tipo de vehículo:");
+                    System.out.println("1. Bus");
+                    System.out.println("2. Buseta");
+                    System.out.println("3. MicroBus");
+                    System.out.print("Seleccione: ");
+                    int tipo = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Placa: ");
+                    String placa = scanner.nextLine();
+                    // Se crea la ruta
+                    System.out.print("Código de ruta: ");
+                    String codigoRuta = scanner.nextLine();
+                    System.out.print("Ciudad origen: ");
+                    String origen = scanner.nextLine();
+                    System.out.print("Ciudad destino: ");
+                    String destino = scanner.nextLine();
+                    System.out.print("Distancia (km): ");
+                    double distancia = scanner.nextDouble();
+                    System.out.print("Tiempo (minutos): ");
+                    int tiempo = scanner.nextInt();
+                    scanner.nextLine();
+                    Ruta ruta = new Ruta(codigoRuta, origen, destino, distancia, tiempo);
+
+                    System.out.print("Estado (disponible / no disponible / mantenimiento): ");
+                    String estado = scanner.nextLine();
+
+                    Vehiculo nuevo = null;
+                    switch (tipo) {
+                        case 1: nuevo = new Bus(placa, ruta, estado); break;
+                        case 2: nuevo = new Buseta(placa, ruta, estado); break;
+                        case 3: nuevo = new MicroBus(placa, ruta, estado); break;
+                        default: System.out.println("Tipo no válido."); break;
+                    }
+
+                    if (nuevo != null) {
+                        servicioVehiculo.registrarVehiculo(nuevo);
+                    }
+                    break;
+                case 2:  servicioVehiculo.listarTodos();
+                case 3:
+                    System.out.print("Ingrese la placa a buscar: ");
+                    placa = scanner.nextLine();
+                    servicioVehiculo.buscarPorPlaca(placa);
+                    break;
+                case 4:  System.out.print("Ingrese la placa del vehículo: ");
+                    String placaEstado = scanner.nextLine();
+                    Vehiculo v = servicioVehiculo.buscarPorPlaca(placaEstado);
+                    if (v != null) {
+                        System.out.print("Nuevo estado (disponible / no disponible / mantenimiento): ");
+                        String nuevoEstado = scanner.nextLine();
+                        servicioVehiculo.cambiarEstadoVehiculo(v, nuevoEstado);
+                    }
+                    break;
                 case 0: break;
                 default: System.out.println("️ Opción no válida.");
             }
