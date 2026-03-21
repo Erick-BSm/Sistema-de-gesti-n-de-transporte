@@ -230,8 +230,26 @@ public class Menu {
             scanner.nextLine();
 
             switch (opcion) {
-                case 1: break;
-                case 2:  break;
+                case 1: System.out.print("Cédula del pasajero: ");
+                    String cedula = scanner.nextLine();
+                    Pasajero pasajero = servicioPasajero.buscarPorCedula(cedula);
+                    if (pasajero == null) break;
+
+                    System.out.print("Placa del vehículo: ");
+                    String placa = scanner.nextLine();
+                    Vehiculo vehiculo = servicioVehiculo.buscarPorPlaca(placa);
+                    if (vehiculo == null) break;
+
+                    System.out.print("Ciudad origen: ");
+                    String origen = scanner.nextLine();
+                    System.out.print("Ciudad destino: ");
+                    String destino = scanner.nextLine();
+
+                    servicioTicket.venderTicket(pasajero, placa, origen, destino, vehiculo.getTarifa());
+                    System.out.println("Ticket vendido correctamente.");
+                    break;
+                case 2:  servicioTicket.listarTickets();
+                    break;
                 case 3:  break;
 
                 default: System.out.println("️ Opción no válida.");

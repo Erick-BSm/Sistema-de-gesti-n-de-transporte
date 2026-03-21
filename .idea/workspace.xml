@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a12d5ba-a556-4a36-a1c2-2683706c74d7" name="Changes" comment="feature: Creación del atributo conductor en vehiculo">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/PasajeroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PasajeroService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/ServicioVehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ServicioVehiculo.java" afterDir="false" />
+    <list default="true" id="3a12d5ba-a556-4a36-a1c2-2683706c74d7" name="Changes" comment="feature: Construcción de la gestion de personas en las capas">
+      <change beforePath="$PROJECT_DIR$/src/dao/TicketDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/TicketDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TicketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +126,7 @@
       <workItem from="1773623191919" duration="1553000" />
       <workItem from="1773672661575" duration="1064000" />
       <workItem from="1774020306514" duration="4849000" />
-      <workItem from="1774118297399" duration="4190000" />
+      <workItem from="1774118297399" duration="4513000" />
     </task>
     <task id="LOCAL-00001" summary="feature:metodo iniciar">
       <option name="closed" value="true" />
@@ -193,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774122047266</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feature: Construcción de la gestion de personas en las capas">
+      <option name="closed" value="true" />
+      <created>1774122569438</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1774122569438</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +237,7 @@
     <MESSAGE value="feature: Nuevo apartado gestión reservas creado" />
     <MESSAGE value="feature: Metodos en gestion vehiculo conectados" />
     <MESSAGE value="feature: Creación del atributo conductor en vehiculo" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: Creación del atributo conductor en vehiculo" />
+    <MESSAGE value="feature: Construcción de la gestion de personas en las capas" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: Construcción de la gestion de personas en las capas" />
   </component>
 </project>
