@@ -88,7 +88,8 @@ public class Menu {
             scanner.nextLine();
 
             switch (opcion) {
-                case 1: System.out.println("Tipo de vehículo:");
+                case 1:
+                    System.out.println("Tipo de vehículo:");
                     System.out.println("1. Bus");
                     System.out.println("2. Buseta");
                     System.out.println("3. MicroBus");
@@ -126,13 +127,15 @@ public class Menu {
                         servicioVehiculo.registrarVehiculo(nuevo);
                     }
                     break;
-                case 2:  servicioVehiculo.listarTodos();
+                case 2:
+                    servicioVehiculo.listarTodos();
                 case 3:
                     System.out.print("Ingrese la placa a buscar: ");
                     placa = scanner.nextLine();
                     servicioVehiculo.buscarPorPlaca(placa);
                     break;
-                case 4:  System.out.print("Ingrese la placa del vehículo: ");
+                case 4:
+                    System.out.print("Ingrese la placa del vehículo: ");
                     String placaEstado = scanner.nextLine();
                     Vehiculo v = servicioVehiculo.buscarPorPlaca(placaEstado);
                     if (v != null) {
@@ -163,7 +166,8 @@ public class Menu {
             scanner.nextLine();
 
             switch (opcion) {
-                case 1: System.out.print("Cédula del conductor: ");
+                case 1:
+                    System.out.print("Cédula del conductor: ");
                     String cedulaConductor = scanner.nextLine();
                     Pasajero conductor = servicioPasajero.buscarPorCedula(cedulaConductor);
                     if (conductor == null) {
@@ -174,7 +178,8 @@ public class Menu {
                     String placaVehiculo = scanner.nextLine();
                     servicioVehiculo.asignarConductorAVehiculo(placaVehiculo, conductor);
                     break;
-                case 2:  System.out.print("Cédula: ");
+                case 2:
+                    System.out.print("Cédula: ");
                     String cedula = scanner.nextLine();
                     System.out.print("Nombre: ");
                     String nombre = scanner.nextLine();
@@ -230,7 +235,8 @@ public class Menu {
             scanner.nextLine();
 
             switch (opcion) {
-                case 1: System.out.print("Cédula del pasajero: ");
+                case 1:
+                    System.out.print("Cédula del pasajero: ");
                     String cedula = scanner.nextLine();
                     Pasajero pasajero = servicioPasajero.buscarPorCedula(cedula);
                     if (pasajero == null) break;
@@ -248,7 +254,8 @@ public class Menu {
                     servicioTicket.venderTicket(pasajero, placa, origen, destino, vehiculo.getTarifa());
                     System.out.println("Ticket vendido correctamente.");
                     break;
-                case 2:  servicioTicket.listarTickets();
+                case 2:
+                    servicioTicket.listarTickets();
                     break;
                 case 3:  break;
 
@@ -275,10 +282,19 @@ public class Menu {
             scanner.nextLine();
 
             switch (opcion) {
-                case 1: break;
-                case 2:  break;
-                case 3:  break;
-                case 4:  break;
+                case 1:
+                    double total = servicioTicket.calcularTotalRecaudado();
+                    System.out.println("Total recaudado: $" + total);
+                    break;
+                case 2:
+                    servicioTicket.listarTickets();
+                    break;
+                case 3:
+                    System.out.println("Vehículo con más tickets: " + servicioTicket.vehiculoConMasTickets());
+                    break;
+                case 4:
+                    servicioTicket.listarTickets();
+                    break;
                 case 0: break;
                 default: System.out.println("️ Opción no válida.");
             }

@@ -4,7 +4,9 @@ import dao.TicketDAO;
 import model.Pasajero;
 import model.Ticket;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TicketService {
 
@@ -42,5 +44,34 @@ public class TicketService {
                     " | Origen: " + partes[2] + " | Destino: " + partes[3] +
                     " | Total: $" + partes[4]);
         }
+    }
+
+    //Metodos auxiliares para el sistema de estadisticas
+    public double calcularTotalRecaudado() {
+        List<String> tickets = dao.listarTodos();
+        double total = 0;
+        for (String linea : tickets) {
+            String[] partes = linea.split(";");
+            if (partes.length >= 5) {
+                total += Double.parseDouble(partes[4]);
+            }
+        }
+        return total;
+    }
+
+    //En este metodo se usa el map y el hashmap, clases que sirven para guardar un conteo, en este caso de los tickets
+    public String vehiculoConMasTickets() {
+        List<String> tickets = dao.listarTodos();
+        Map<String, Integer> conteo = new HashMap<>();
+        for (String linea : tickets) {
+            String[] partes = linea.split(";");
+            if (partes.length >= 2) {
+                conteo.put(partes[1], conteo.getOrDefault(partes[1], 0) + 1);
+            }
+        }
+        return conteo.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(e -> e.getKey() + " (" + e.getValue() + " tickets)")
+                .orElse("Sin datos");
     }
 }
