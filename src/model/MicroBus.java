@@ -3,7 +3,7 @@ package model;
 
 
 public class MicroBus extends Vehiculo {
-    public MicroBus(String placa, String ruta, String estado) {
+    public MicroBus(String placa, Ruta ruta, String estado) {
         super(25, 0, 10000, placa, ruta, estado);
     }
 
@@ -15,8 +15,12 @@ public class MicroBus extends Vehiculo {
 
     public static MicroBus fromArchivoTexto(String linea) {
         String[] datos = linea.split(";");
-        MicroBus m = new MicroBus(datos[0], datos[1], datos[2]);
-        m.setPasajeros(Integer.parseInt(datos[3]));
+        //Como se añadio la clase Ruta toco cambiar por completo este metodo y añadir los atributos del constructor
+        Ruta ruta = new Ruta(datos[1], datos[2], datos[3],
+                Double.parseDouble(datos[4]),
+                Integer.parseInt(datos[5]));
+        MicroBus m = new MicroBus(datos[0], ruta, datos[6]);
+        m.setPasajeros(Integer.parseInt(datos[7]));
         return m;
     }
 
