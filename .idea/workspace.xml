@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a12d5ba-a556-4a36-a1c2-2683706c74d7" name="Changes" comment="feature: menu principal de usuario">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Bus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Bus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Buseta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Buseta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/MicroBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/MicroBus.java" afterDir="false" />
+    <list default="true" id="3a12d5ba-a556-4a36-a1c2-2683706c74d7" name="Changes" comment="feature: Metodos fromArchivoTexto actualizados para las rutas">
+      <change beforePath="$PROJECT_DIR$/src/view/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +124,7 @@
       <workItem from="1773623191919" duration="1553000" />
       <workItem from="1773672661575" duration="1064000" />
       <workItem from="1774020306514" duration="4849000" />
-      <workItem from="1774118297399" duration="1289000" />
+      <workItem from="1774118297399" duration="1676000" />
     </task>
     <task id="LOCAL-00001" summary="feature:metodo iniciar">
       <option name="closed" value="true" />
@@ -162,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773549950319</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feature: Metodos fromArchivoTexto actualizados para las rutas">
+      <option name="closed" value="true" />
+      <created>1774119643458</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1774119643458</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +199,7 @@
     <MESSAGE value="feature:metodo iniciar" />
     <MESSAGE value="feature:menu.iniciar en main" />
     <MESSAGE value="feature: menu principal de usuario" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: menu principal de usuario" />
+    <MESSAGE value="feature: Metodos fromArchivoTexto actualizados para las rutas" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: Metodos fromArchivoTexto actualizados para las rutas" />
   </component>
 </project>

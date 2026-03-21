@@ -37,9 +37,11 @@ public class Menu {
             System.out.println("||  2.Gestion de personas        ||");
             System.out.println("||  3.Venta de tickets           ||");
             System.out.println("||  4.Consutar estadisticas      ||");
+            System.out.println("||  5.Consutar reservas          ||");
             System.out.println("||  0.Salir del sistema          ||");
             System.out.println("||===============================||\n");
             System.out.println("Escoja una opcion: ");
+            opcion = scanner.nextInt();
             scanner.nextLine();
 
             switch(opcion){
@@ -52,6 +54,8 @@ public class Menu {
                 case 3: menuTickets();
 
                 case 4: menuEstadisticas();
+
+                case 5: menuReservas();
 
                 default:System.out.println("Opcion no valida");
             }
@@ -157,6 +161,35 @@ public class Menu {
                 case 2:  break;
                 case 3:  break;
                 case 4:  break;
+                case 0: break;
+                default: System.out.println("️ Opción no válida.");
+            }
+        } while (opcion != 0);
+    }
+
+    private void menuReservas(){
+        int opcion;
+        do {
+            System.out.println("\n╔═══════════════════════════════════╗");
+            System.out.println("║   GESTIÓN RESERVAS                ║");
+            System.out.println("╠═══════════════════════════════════╣");
+            System.out.println("║  1. Crear nueva reserva           ║");
+            System.out.println("║  2. Cancelar reserva              ║");
+            System.out.println("║  3. Listar reservas               ║");
+            System.out.println("║  4. Listar historial de reservas  ║");
+            System.out.println("║  5. Convertir reserva en ticket   ║");
+            System.out.println("║  0. Volver                        ║");
+            System.out.println("╚═══════════════════════════════════╝");
+            System.out.print("Seleccione una opcion: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcion) {
+                case 1: break;
+                case 2:  break;
+                case 3:  break;
+                case 4:  break;
+                case 5:  break;
                 case 0: break;
                 default: System.out.println("️ Opción no válida.");
             }
