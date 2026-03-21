@@ -1,14 +1,17 @@
 package model;
 
-public abstract class Vehiculo implements Imprimible{
+
+
+public abstract class Vehiculo implements Imprimible {
+
     protected int capacidad;
     protected int pasajeros;
     protected float tarifa;
     protected String placa;
-    protected String ruta;
+    protected Ruta ruta; // ← cambio importante
     protected String estado;
 
-    public Vehiculo(int capacidad, int pasajeros, float tarifa, String placa, String ruta, String estado) {
+    public Vehiculo(int capacidad, int pasajeros, float tarifa, String placa, Ruta ruta, String estado) {
         this.capacidad = capacidad;
         this.pasajeros = pasajeros;
         this.tarifa = tarifa;
@@ -49,10 +52,12 @@ public abstract class Vehiculo implements Imprimible{
         return false;
     }
 
-    //Este metodo es necesario para que en la persistencia se pasen estos datos a archivo de texto
-
+    // Persistencia a texto (usa el código de la ruta)
     public String toArchivoTexto() {
-        return placa + ";" + ruta + ";" + estado + ";" + pasajeros;
+        return placa + ";" +
+                (ruta != null ? ruta.getCodigoRuta() : "SIN_RUTA") + ";" +
+                estado + ";" +
+                pasajeros;
     }
 
     public double calcularTarifaConDescuento(double descuento) {
@@ -71,9 +76,13 @@ public abstract class Vehiculo implements Imprimible{
         this.capacidad = capacidad;
     }
 
-    public int getPasajeros() { return pasajeros; }
+    public int getPasajeros() {
+        return pasajeros;
+    }
 
-    public void setPasajeros(int pasajeros) { this.pasajeros = pasajeros; }
+    public void setPasajeros(int pasajeros) {
+        this.pasajeros = pasajeros;
+    }
 
     public float getTarifa() {
         return tarifa;
@@ -91,11 +100,11 @@ public abstract class Vehiculo implements Imprimible{
         this.placa = placa;
     }
 
-    public String getRuta() {
+    public Ruta getRuta() {
         return ruta;
     }
 
-    public void setRuta(String ruta) {
+    public void setRuta(Ruta ruta) {
         this.ruta = ruta;
     }
 
@@ -109,10 +118,16 @@ public abstract class Vehiculo implements Imprimible{
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "capacidad=" + capacidad + "pasajeros=" + pasajeros + "tarifa=" + tarifa + ", placa=" + placa + ", ruta=" + ruta + ", estado=" + estado + '}';
+        return "Vehiculo{" +
+                "capacidad=" + capacidad +
+                ", pasajeros=" + pasajeros +
+                ", tarifa=" + tarifa +
+                ", placa='" + placa + '\'' +
+                ", ruta=" + (ruta != null ? ruta.getCodigoRuta() : "sin ruta") +
+                ", estado='" + estado + '\'' +
+                '}';
     }
 
-    //Metodo que ayuda en la persistencia para detectar el tipo de vehiculo que es
+    // Para identificar el tipo en persistencia
     public abstract String getTipoVehiculo();
-    
 }

@@ -1,13 +1,24 @@
-package model;
+    package model;
 
-public class PasajeroAdultoMayor extends Pasajero {
+    import java.time.LocalDate;
+    import java.time.Period;
 
-    public PasajeroAdultoMayor(String cedula, String nombre) {
-        super(cedula, nombre);
+    public class PasajeroAdultoMayor extends Pasajero {
+
+        private LocalDate fechaNacimiento;
+
+        public PasajeroAdultoMayor(String cedula, String nombre, LocalDate fechaNacimiento) {
+            super(cedula, nombre);
+            this.fechaNacimiento = fechaNacimiento;
+        }
+
+        @Override
+        public double calcularDescuento() {
+            int edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
+
+            if (edad >= 60) {
+                return 0.30;
+            }
+            return 0.0;
+        }
     }
-
-    @Override
-    public double calcularDescuento() {
-        return 0.30;
-    }
-}
