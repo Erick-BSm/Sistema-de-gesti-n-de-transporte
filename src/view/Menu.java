@@ -57,17 +57,17 @@ public class Menu {
             switch(opcion){
                 case 0: System.out.println("Saliendo del sistema...");break;
 
-                case 1: menuVehiculos();
+                case 1: menuVehiculos(); break;
 
-                case 2: menuPersonas();
+                case 2: menuPersonas(); break;
 
-                case 3: menuTickets();
+                case 3: menuTickets();  break;
 
-                case 4: menuEstadisticas();
+                case 4: menuEstadisticas(); break;
 
-                case 5: menuReservas();
+                case 5: menuReservas();  break;
 
-                default:System.out.println("Opcion no valida");
+                default:System.out.println("Opcion no valida"); break;
             }
         }while (opcion != 0);
 
@@ -130,7 +130,7 @@ public class Menu {
                     }
                     break;
                 case 2:
-                    servicioVehiculo.listarTodos();
+                    servicioVehiculo.listarTodos(); break;
                 case 3:
                     System.out.print("Ingrese la placa a buscar: ");
                     placa = scanner.nextLine();
@@ -161,7 +161,7 @@ public class Menu {
             System.out.println("╠══════════════════════════════╣");
             System.out.println("║  1. Registrar conductor      ║");
             System.out.println("║  2. Registrar pasajero       ║");
-            System.out.println("║  3. Volver                   ║");
+            System.out.println("║  0. Volver                   ║");
             System.out.println("╚══════════════════════════════╝");
             System.out.print("Seleccione una opcion: ");
             opcion = scanner.nextInt();
@@ -215,7 +215,8 @@ public class Menu {
                     servicioPasajero.registrarPasajero(cedula, nombre, tipo, fechaNacimiento);
                     System.out.println("Pasajero registrado correctamente.");
                     break;
-                case 3:  break;
+
+                case 0: break;
 
                 default: System.out.println("️ Opción no válida.");
             }
@@ -230,7 +231,7 @@ public class Menu {
             System.out.println("╠══════════════════════════════╣");
             System.out.println("║  1. Vender tickets           ║");
             System.out.println("║  2. Listar tickets           ║");
-            System.out.println("║  3. Volver                   ║");
+            System.out.println("║  0. Volver                   ║");
             System.out.println("╚══════════════════════════════╝");
             System.out.print("Seleccione una opcion: ");
             opcion = scanner.nextInt();
@@ -259,7 +260,8 @@ public class Menu {
                 case 2:
                     servicioTicket.listarTickets();
                     break;
-                case 3:  break;
+
+                case 0: break;
 
                 default: System.out.println("️ Opción no válida.");
             }
