@@ -3,7 +3,7 @@ package model;
 
 
 public class Buseta extends Vehiculo {
-    public Buseta(String placa, String ruta, String estado) {
+    public Buseta(String placa, Ruta ruta, String estado) {
         super(19, 0,8000, placa, ruta, estado);
     }
 
@@ -14,11 +14,13 @@ public class Buseta extends Vehiculo {
     }
 
     public static Buseta fromArchivoTexto(String linea) {
-        //El formato en el que se van a pasar a texto es: Placa;Ruta;Estado;Pasajeros
         String[] datos = linea.split(";");
-        Buseta b = new Buseta(datos[0], datos[1], datos[2]);
-        b.setPasajeros(Integer.parseInt(datos[3]));
-        return b;
+        Ruta ruta = new Ruta(datos[1], datos[2], datos[3],
+                Double.parseDouble(datos[4]),
+                Integer.parseInt(datos[5]));
+        Buseta m = new Buseta(datos[0], ruta, datos[6]);
+        m.setPasajeros(Integer.parseInt(datos[7]));
+        return m;
     }
 
     @Override

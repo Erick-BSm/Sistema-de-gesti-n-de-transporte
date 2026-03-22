@@ -10,6 +10,7 @@ public abstract class Vehiculo implements Imprimible {
     protected String placa;
     protected Ruta ruta; // ← cambio importante
     protected String estado;
+    protected Persona conductor;
 
     public Vehiculo(int capacidad, int pasajeros, float tarifa, String placa, Ruta ruta, String estado) {
         this.capacidad = capacidad;
@@ -50,6 +51,10 @@ public abstract class Vehiculo implements Imprimible {
             return true;
         }
         return false;
+    }
+
+    public void asignarConductor(Persona conductor) {
+        this.conductor = conductor;
     }
 
     // Persistencia a texto (usa el código de la ruta)
@@ -114,6 +119,10 @@ public abstract class Vehiculo implements Imprimible {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Persona getConductor() {
+        return conductor;
     }
 
     @Override

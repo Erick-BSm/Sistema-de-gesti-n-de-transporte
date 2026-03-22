@@ -1,10 +1,7 @@
 package service;
 
 import dao.VehiculoDAO;
-import model.Buseta;
-import model.Bus;
-import model.MicroBus;
-import model.Vehiculo;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +22,17 @@ public class ServicioVehiculo {
         vehiculoDAO.guardar(vehiculo);
         System.out.println("Vehículo registrado correctamente.");
         return true;
+    }
+
+    //Metodo encargado de asignar conductor a un vehiculo
+    public void asignarConductorAVehiculo(String placa, Pasajero persona) {
+        Vehiculo vehiculo = vehiculoDAO.buscarPorPlaca(placa);
+        if (vehiculo == null) {
+            System.out.println("Vehículo no encontrado.");
+            return;
+        }
+        vehiculo.asignarConductor(persona);
+        System.out.println("Conductor asignado correctamente al vehículo " + placa);
     }
 
     //Validaciones que son necesarias para que funcionen los metodos CRUD
