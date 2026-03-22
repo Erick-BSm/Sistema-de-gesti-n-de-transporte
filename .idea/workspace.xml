@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3a12d5ba-a556-4a36-a1c2-2683706c74d7" name="Changes" comment="feature: Creacion metodos en TicketService">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Menu.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/clase-vehiculo" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;assignee&quot;: &quot;Erick-BSm&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;assignee&quot;: &quot;Erick-BSm&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Erick-BSm/Sistema-de-gesti-n-de-transporte.git&quot;,
+    &quot;accountId&quot;: &quot;b9d8f8f7-50fb-42f0-894c-e4f6ff691cff&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="3AVUj3S4iHyQN0WXe78ZJxWqz7C" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "feature/menu-principal",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/USER/Documents/SistemaGestionTransporte/src/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="SistemaGestionTransporte" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a12d5ba-a556-4a36-a1c2-2683706c74d7" name="Changes" comment="" />
+      <created>1772677371531</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1772677371531</updated>
+      <workItem from="1772677375959" duration="3428000" />
+      <workItem from="1772681826614" duration="765000" />
+      <workItem from="1772763692022" duration="2046000" />
+      <workItem from="1773546160494" duration="4659000" />
+      <workItem from="1773619626692" duration="1098000" />
+      <workItem from="1773620745801" duration="1683000" />
+      <workItem from="1773622839607" duration="302000" />
+      <workItem from="1773623191919" duration="1553000" />
+      <workItem from="1773672661575" duration="1064000" />
+      <workItem from="1774020306514" duration="4849000" />
+      <workItem from="1774118297399" duration="7701000" />
+      <workItem from="1774129429420" duration="1899000" />
+      <workItem from="1774142516379" duration="2310000" />
+    </task>
+    <task id="LOCAL-00001" summary="feature:metodo iniciar">
+      <option name="closed" value="true" />
+      <created>1772764971214</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1772764971214</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feature:metodo iniciar">
+      <option name="closed" value="true" />
+      <created>1772765052121</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1772765052121</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feature:menu.iniciar en main">
+      <option name="closed" value="true" />
+      <created>1773548053273</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773548053275</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feature: menu principal de usuario">
+      <option name="closed" value="true" />
+      <created>1773549950319</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1773549950319</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feature: Metodos fromArchivoTexto actualizados para las rutas">
+      <option name="closed" value="true" />
+      <created>1774119643458</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1774119643458</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feature: Nuevo apartado gestión reservas creado">
+      <option name="closed" value="true" />
+      <created>1774120178269</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1774120178269</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feature: Metodos en gestion vehiculo conectados">
+      <option name="closed" value="true" />
+      <created>1774121264184</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1774121264184</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feature: Creación del atributo conductor en vehiculo">
+      <option name="closed" value="true" />
+      <created>1774122047266</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1774122047266</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feature: Construcción de la gestion de personas en las capas">
+      <option name="closed" value="true" />
+      <created>1774122569438</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1774122569438</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feature: Construcción de la venta de tickets en las capas">
+      <option name="closed" value="true" />
+      <created>1774122868384</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1774122868384</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feature: Construcción del menu centro de estadistica en las capas">
+      <option name="closed" value="true" />
+      <created>1774123930342</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1774123930342</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feature: Construcción del menu gestión de reservas">
+      <option name="closed" value="true" />
+      <created>1774125038289</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1774125038289</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feature: Creacion metodos en TicketService">
+      <option name="closed" value="true" />
+      <created>1774143988740</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1774143988740</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/clase-persona" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feature:metodo iniciar" />
+    <MESSAGE value="feature:menu.iniciar en main" />
+    <MESSAGE value="feature: menu principal de usuario" />
+    <MESSAGE value="feature: Metodos fromArchivoTexto actualizados para las rutas" />
+    <MESSAGE value="feature: Nuevo apartado gestión reservas creado" />
+    <MESSAGE value="feature: Metodos en gestion vehiculo conectados" />
+    <MESSAGE value="feature: Creación del atributo conductor en vehiculo" />
+    <MESSAGE value="feature: Construcción de la gestion de personas en las capas" />
+    <MESSAGE value="feature: Construcción de la venta de tickets en las capas" />
+    <MESSAGE value="feature: Construcción del menu centro de estadistica en las capas" />
+    <MESSAGE value="feature: Construcción del menu gestión de reservas" />
+    <MESSAGE value="feature: Creacion metodos en TicketService" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: Creacion metodos en TicketService" />
+  </component>
+</project>
