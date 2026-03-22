@@ -1,6 +1,9 @@
 package dao;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import model.Ticket;
 
 public class TicketDAO {
@@ -15,13 +18,22 @@ public class TicketDAO {
         }
     }
 
-    /**
-     * Cuenta cuántos tickets vendidos existen para una placa dada.
-     * Formato de cada línea: cedula;placa;origen;destino;fechaViaje;total
-     *
-     * @param placa placa del vehículo a consultar.
-     * @return número de tickets encontrados para esa placa.
-     */
+    public List<String> listarTodos() {
+        List<String> tickets = new ArrayList<>();
+        File archivo = new File(FILE);
+        if (!archivo.exists()) return tickets;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (!linea.trim().isEmpty()) tickets.add(linea);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return tickets;
+    }
+
     public int contarPorPlaca(String placa) {
         int contador = 0;
         File archivo = new File(FILE);
@@ -44,6 +56,7 @@ public class TicketDAO {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         return contador;
     }
