@@ -15,12 +15,11 @@ public class MicroBus extends Vehiculo {
 
     public static MicroBus fromArchivoTexto(String linea) {
         String[] datos = linea.split(";");
-        //Como se añadio la clase Ruta toco cambiar por completo este metodo y añadir los atributos del constructor
-        Ruta ruta = new Ruta(datos[1], datos[2], datos[3],
-                Double.parseDouble(datos[4]),
-                Integer.parseInt(datos[5]));
-        MicroBus m = new MicroBus(datos[0], ruta, datos[6]);
-        m.setPasajeros(Integer.parseInt(datos[7]));
+        Ruta ruta = new Ruta(datos[2], datos[3], datos[4],
+                Double.parseDouble(datos[5]),
+                Integer.parseInt(datos[6]));
+        MicroBus m = new MicroBus(datos[1], ruta, datos[7]);
+        m.setPasajeros(Integer.parseInt(datos[8]));
         return m;
     }
 

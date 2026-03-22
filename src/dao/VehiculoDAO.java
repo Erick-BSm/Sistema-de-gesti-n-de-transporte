@@ -44,7 +44,7 @@ public class VehiculoDAO {
             while ((linea = br.readLine()) != null) {
                 if (!linea.isBlank()) {
                     // Lee el tipo desde el primer campo de la línea
-                    String tipoLinea = linea.split("\\|")[0];
+                    String tipoLinea = linea.split(";")[0];
                     switch (tipoLinea) {
                         case "Buseta"   -> lista.add(Buseta.fromArchivoTexto(linea));
                         case "MicroBus" -> lista.add(MicroBus.fromArchivoTexto(linea));

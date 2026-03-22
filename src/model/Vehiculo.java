@@ -59,8 +59,13 @@ public abstract class Vehiculo implements Imprimible {
 
     // Persistencia a texto (usa el código de la ruta)
     public String toArchivoTexto() {
-        return placa + ";" +
-                (ruta != null ? ruta.getCodigoRuta() : "SIN_RUTA") + ";" +
+        return getTipoVehiculo() + ";" +
+                placa + ";" +
+                (ruta != null ? ruta.getCodigoRuta()  : "") + ";" +
+                (ruta != null ? ruta.getOrigen()       : "") + ";" +
+                (ruta != null ? ruta.getDestino()      : "") + ";" +
+                (ruta != null ? ruta.getDistancia()    : "0") + ";" +
+                (ruta != null ? ruta.getTiempo()       : "0") + ";" +
                 estado + ";" +
                 pasajeros;
     }
