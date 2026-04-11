@@ -21,4 +21,20 @@
             }
             return 0.0;
         }
+
+        @Override
+        public void imprimirDetalle() {
+            //De esta manera podemos ver la edad del 
+            int edad = Period.between(fechaNacimiento, LocalDate.now()).getYears();
+            double descuento = calcularDescuento();
+
+            System.out.println("╔══════════════════════════╗");
+            System.out.println("║   PASAJERO ADULTO MAYOR  ║");
+            System.out.println("╠══════════════════════════╣");
+            System.out.println("║ Cédula      : " + getCedula());
+            System.out.println("║ Nombre      : " + getNombre());
+            System.out.println("║ Edad        : " + edad + " años");
+            System.out.println("║ Descuento   : " + (descuento > 0 ? "30%" : "0% (menor de 60)"));
+            System.out.println("╚══════════════════════════╝");
+        }
     }

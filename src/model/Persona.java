@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Persona {
+public abstract class Persona implements Imprimible{
     private  String cedula;
     private  String nombre;
 

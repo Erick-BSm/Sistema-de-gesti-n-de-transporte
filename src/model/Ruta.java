@@ -1,6 +1,6 @@
 package model;
 
-public class Ruta {
+public class Ruta implements Imprimible{
     private String codigoRuta;
     private String ciudadOrigen;
     private String ciudadDestino;
@@ -19,4 +19,19 @@ public class Ruta {
     public String getCodigoRuta() { return codigoRuta; }
     public String getCiudadOrigen() { return ciudadOrigen; }
     public String getCiudadDestino() { return ciudadDestino; }
+    public double getDistanciaKm() { return distanciaKm; }
+    public int getTiempoMinutos() { return tiempoMinutos; }
+
+    @Override
+    public void imprimirDetalle() {
+        System.out.println("╔══════════════════════════╗");
+        System.out.println("║           RUTA           ║");
+        System.out.println("╠══════════════════════════╣");
+        System.out.println("║ Código      : " + codigoRuta);
+        System.out.println("║ Origen      : " + ciudadOrigen);
+        System.out.println("║ Destino     : " + ciudadDestino);
+        System.out.println("║ Distancia   : " + distanciaKm + " km");
+        System.out.println("║ Tiempo      : " + tiempoMinutos + " min");
+        System.out.println("╚══════════════════════════╝");
+    }
 }

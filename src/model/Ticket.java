@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class Ticket implements Calculable {
+public class Ticket implements Calculable, Imprimible {
 
     private static final double RECARGO_FESTIVO = 0.10;
 
@@ -102,4 +102,22 @@ public class Ticket implements Calculable {
     public LocalDate getFechaViaje() {
         return fechaViaje;
     }
+
+    @Override
+    public void imprimirDetalle() {
+        System.out.println("╔══════════════════════════╗");
+        System.out.println("║          TICKET          ║");
+        System.out.println("╠══════════════════════════╣");
+        System.out.println("║ Pasajero    : " + pasajero.getNombre());
+        System.out.println("║ Cédula      : " + pasajero.getCedula());
+        System.out.println("║ Placa       : " + placaVehiculo);
+        System.out.println("║ Origen      : " + origen);
+        System.out.println("║ Destino     : " + destino);
+        System.out.println("║ Fecha       : " + (fechaViaje != null ? fechaViaje.toString() : "SIN FECHA"));
+        System.out.println("║ Festivo     : " + (esFestivo() ? "Sí (+10%)" : "No"));
+        System.out.println("║ Tarifa base : $" + tarifaBase);
+        System.out.println("║ Total       : $" + calcularTotal());
+        System.out.println("╚══════════════════════════╝");
+    }
+
 }
