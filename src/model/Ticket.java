@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Ticket implements Calculable, Imprimible {
 
-    private static final double RECARGO_FESTIVO = 0.10;
+    private static final double RECARGO_FESTIVO = 0.20;
 
     private Pasajero pasajero;
     private String placaVehiculo;
@@ -114,7 +114,7 @@ public class Ticket implements Calculable, Imprimible {
         System.out.println("║ Origen      : " + origen);
         System.out.println("║ Destino     : " + destino);
         System.out.println("║ Fecha       : " + (fechaViaje != null ? fechaViaje.toString() : "SIN FECHA"));
-        System.out.println("║ Festivo     : " + (esFestivo() ? "Sí (+10%)" : "No"));
+        System.out.println("║ Festivo     : " + (esFestivo() ? "Sí (+20%)" : "No"));
         System.out.println("║ Tarifa base : $" + tarifaBase);
         System.out.println("║ Total       : $" + calcularTotal());
         System.out.println("╚══════════════════════════╝");
