@@ -1,8 +1,8 @@
 package model;
 
 public abstract class Persona {
-    protected String cedula;
-    protected String nombre;
+    private  String cedula;
+    private  String nombre;
 
     public Persona(String cedula, String nombre) {
         this.cedula = cedula;

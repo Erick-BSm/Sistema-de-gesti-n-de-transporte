@@ -4,13 +4,13 @@ package model;
 
 public abstract class Vehiculo implements Imprimible {
 
-    protected int capacidad;
-    protected int pasajeros;
-    protected float tarifa;
-    protected String placa;
-    protected Ruta ruta; // ← cambio importante
-    protected String estado;
-    protected Persona conductor;
+    private int capacidad;
+    private  int pasajeros;
+    private  float tarifa;
+    private  String placa;
+    private  Ruta ruta; // ← cambio importante
+    private  String estado;
+    private  Persona conductor;
 
     public Vehiculo(int capacidad, int pasajeros, float tarifa, String placa, Ruta ruta, String estado) {
         this.capacidad = capacidad;
