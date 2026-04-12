@@ -4,6 +4,7 @@ import model.*;
 import service.ServicioVehiculo;
 import service.GestorReservas;
 import service.PasajeroService;
+import service.RutaService;
 import service.TicketService;
 
 import java.time.LocalDate;
@@ -31,6 +32,7 @@ public class Menu {
     private ServicioVehiculo servicioVehiculo = new ServicioVehiculo();
     private PasajeroService servicioPasajero = new PasajeroService();
     private TicketService servicioTicket = new TicketService();
+    private RutaService      servicioRuta      = new RutaService();
     private GestorReservas gestorReservas = new GestorReservas(servicioVehiculo, servicioTicket);
 
     public Menu() {
@@ -48,6 +50,7 @@ public class Menu {
             System.out.println("||  3.Venta de tickets           ||");
             System.out.println("||  4.Consutar estadisticas      ||");
             System.out.println("||  5.Consutar reservas          ||");
+            System.out.println("||  6. Gestion de rutas          ||");
             System.out.println("||  0.Salir del sistema          ||");
             System.out.println("||===============================||\n");
             System.out.println("Escoja una opcion: ");
@@ -66,6 +69,8 @@ public class Menu {
                 case 4: menuEstadisticas(); break;
 
                 case 5: menuReservas();  break;
+
+                case 6: menuRutas();        break;  //
 
                 default:System.out.println("Opcion no valida"); break;
             }
@@ -100,19 +105,35 @@ public class Menu {
                     scanner.nextLine();
                     System.out.print("Placa: ");
                     String placa = scanner.nextLine();
-                    // Se crea la ruta
-                    System.out.print("Código de ruta: ");
+
+                    servicioRuta.imprimirTodas();   // muestra las rutas disponibles
+                    System.out.print("Código de ruta a asignar: ");
                     String codigoRuta = scanner.nextLine();
-                    System.out.print("Ciudad origen: ");
-                    String origen = scanner.nextLine();
-                    System.out.print("Ciudad destino: ");
-                    String destino = scanner.nextLine();
-                    System.out.print("Distancia (km): ");
-                    double distancia = scanner.nextDouble();
-                    System.out.print("Tiempo (minutos): ");
-                    int tiempo = scanner.nextInt();
-                    scanner.nextLine();
-                    Ruta ruta = new Ruta(codigoRuta, origen, destino, distancia, tiempo);
+                    Ruta ruta = servicioRuta.buscarPorCodigo(codigoRuta);
+
+                    // Si no existe ofrece crearla en el momento
+                    if (ruta == null) {
+                        System.out.println("Ruta no encontrada. ¿Desea crearla ahora? (s/n): ");
+                        String resp = scanner.nextLine();
+                        if (resp.equalsIgnoreCase("s")) {
+                            System.out.print("Ciudad origen: ");
+                            String origen = scanner.nextLine();
+                            System.out.print("Ciudad destino: ");
+                            String destino = scanner.nextLine();
+                            System.out.print("Distancia (km): ");
+                            double distancia = scanner.nextDouble();
+                            System.out.print("Tiempo estimado (minutos): ");
+                            int tiempo = scanner.nextInt();
+                            scanner.nextLine();
+                            boolean creada = servicioRuta.registrarRuta(codigoRuta, origen,
+                                    destino, distancia, tiempo);
+                            if (creada) ruta = servicioRuta.buscarPorCodigo(codigoRuta);
+                        }
+                        if (ruta == null) {
+                            System.out.println("No se puede registrar el vehículo sin una ruta válida.");
+                            break;
+                        }
+                    }
 
                     System.out.print("Estado (disponible / no disponible / mantenimiento): ");
                     String estado = scanner.nextLine();
@@ -376,6 +397,76 @@ public class Menu {
         } while (opcion != 0);
     }
 
+    private void menuRutas() {
+        int opcion;
+        do {
+            System.out.println("\n╔══════════════════════════════╗");
+            System.out.println("║   GESTIÓN DE RUTAS           ║");
+            System.out.println("╠══════════════════════════════╣");
+            System.out.println("║  1. Registrar ruta           ║");
+            System.out.println("║  2. Listar todas las rutas   ║");
+            System.out.println("║  3. Buscar ruta por código   ║");
+            System.out.println("║  4. Actualizar ruta          ║");
+            System.out.println("║  5. Eliminar ruta            ║");
+            System.out.println("║  0. Volver                   ║");
+            System.out.println("╚══════════════════════════════╝");
+            System.out.print("Seleccione una opcion: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine();
 
+            switch (opcion) {
+                case 1:
+                    System.out.print("Código de ruta: ");
+                    String codigo = scanner.nextLine();
+                    System.out.print("Ciudad origen: ");
+                    String origen = scanner.nextLine();
+                    System.out.print("Ciudad destino: ");
+                    String destino = scanner.nextLine();
+                    System.out.print("Distancia (km): ");
+                    double distancia = scanner.nextDouble();
+                    System.out.print("Tiempo estimado (minutos): ");
+                    int tiempo = scanner.nextInt();
+                    scanner.nextLine();
+                    servicioRuta.registrarRuta(codigo, origen, destino, distancia, tiempo);
+                    break;
+
+                case 2:
+                    servicioRuta.imprimirTodas();
+                    break;
+
+                case 3:
+                    System.out.print("Código de ruta: ");
+                    String codigoBuscar = scanner.nextLine();
+                    Ruta encontrada = servicioRuta.buscarPorCodigo(codigoBuscar);
+                    if (encontrada != null) encontrada.imprimirDetalle();
+                    break;
+
+                case 4:
+                    System.out.print("Código de ruta a actualizar: ");
+                    String codigoActualizar = scanner.nextLine();
+                    System.out.print("Nueva ciudad origen: ");
+                    String nuevoOrigen = scanner.nextLine();
+                    System.out.print("Nueva ciudad destino: ");
+                    String nuevoDestino = scanner.nextLine();
+                    System.out.print("Nueva distancia (km): ");
+                    double nuevaDistancia = scanner.nextDouble();
+                    System.out.print("Nuevo tiempo estimado (minutos): ");
+                    int nuevoTiempo = scanner.nextInt();
+                    scanner.nextLine();
+                    servicioRuta.actualizarRuta(codigoActualizar, nuevoOrigen, nuevoDestino,
+                            nuevaDistancia, nuevoTiempo);
+                    break;
+
+                case 5:
+                    System.out.print("Código de ruta a eliminar: ");
+                    String codigoEliminar = scanner.nextLine();
+                    servicioRuta.eliminarRuta(codigoEliminar);
+                    break;
+
+                case 0: break;
+                default: System.out.println("Opción no válida.");
+            }
+        } while (opcion != 0);
+    }
 
 }
