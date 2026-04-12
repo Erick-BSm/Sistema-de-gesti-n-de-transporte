@@ -62,10 +62,10 @@ public abstract class Vehiculo implements Imprimible {
         return getTipoVehiculo() + ";" +
                 placa + ";" +
                 (ruta != null ? ruta.getCodigoRuta()  : "") + ";" +
-                (ruta != null ? ruta.getOrigen()       : "") + ";" +
-                (ruta != null ? ruta.getDestino()      : "") + ";" +
-                (ruta != null ? ruta.getDistancia()    : "0") + ";" +
-                (ruta != null ? ruta.getTiempo()       : "0") + ";" +
+                (ruta != null ? ruta.getCiudadOrigen()       : "") + ";" +
+                (ruta != null ? ruta.getCiudadDestino()      : "") + ";" +
+                (ruta != null ? ruta.getDistanciaKm()    : "0") + ";" +
+                (ruta != null ? ruta.getTiempoMinutos()       : "0") + ";" +
                 estado + ";" +
                 pasajeros;
     }

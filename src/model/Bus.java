@@ -11,7 +11,7 @@ public class Bus extends Vehiculo {
     @Override
     public double calcularTarifaConRecargo(double porcentaje) {
         double recargo = Math.min(porcentaje, 0.20); // máximo 20%
-        return this.tarifa + (this.tarifa * recargo);
+        return this.getTarifa() + (this.getTarifa() * recargo);
     }
 
     public static Bus fromArchivoTexto(String linea) {
@@ -33,12 +33,12 @@ public class Bus extends Vehiculo {
         System.out.println("╔══════════════════════════╗");
         System.out.println("║           BUS            ║");
         System.out.println("╠══════════════════════════╣");
-        System.out.println("║ Placa       : " + placa);
-        System.out.println("║ Ruta        : " + ruta);
-        System.out.println("║ Capacidad   : " + capacidad);
+        System.out.println("║ Placa       : " + getPlaca());
+        System.out.println("║ Ruta        : " + getRuta());
+        System.out.println("║ Capacidad   : " + getCapacidad());
         System.out.println("║ Disponibles : " + getCuposDisponibles());
-        System.out.println("║ Tarifa base : $" + tarifa);
-        System.out.println("║ Estado      : " + estado);
+        System.out.println("║ Tarifa base : $" + getTarifa());
+        System.out.println("║ Estado      : " + getEstado());
         System.out.println("╚══════════════════════════╝");
     }
 }
