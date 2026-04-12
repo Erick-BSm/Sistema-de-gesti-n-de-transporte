@@ -32,6 +32,7 @@ public class GestorReservas {
         this.servicioVehiculo = servicioVehiculo;
         this.ticketService    = ticketService;
         this.reservas         = new ArrayList<>();
+        cargarDesdeArchivo();
     }
 
     // ═════════════════════════════════════════
